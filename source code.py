@@ -47,7 +47,7 @@ def NumberOfBooks(number_of_members): #Number of books read by the whole group m
         number_of_books += int(len(data["Members"][MemberCycling(i)]["Books"]))
         i += 1
     print_number = "Number of books:" + str(number_of_books)
-    messagebox.showinfo("Task One", print_number)
+    messagebox.showinfo("Task One", print_number)   #here to display the result in a popup window
 
 #NumberOfBooks(number_of_members)#func call
 
@@ -61,14 +61,14 @@ def number_of_pages(number_of_members) : #Number of pages read by the whole grou
         for j in range(1,len(data["Members"][MemberCycling(f)]["Books"])+1): #to cycle between books
             number_of_pages += int(data["Members"][MemberCycling(f)]["Books"][BookCycling(j)]["Number of pages"]) 
     print_pages = "Total number of pages:" + str(number_of_pages)
-    messagebox.showinfo("Task two", print_pages)
+    messagebox.showinfo("Task two", print_pages)    #here to display the result in a popup window
 
 #number_of_pages(number_of_members)#func call
 
 #----
 
 def RankingOfCategories(number_of_members) : #Ranking of books categories mostly read by the group members
-    plt.figure(figsize=(15,5))
+    plt.figure(figsize=(15,5))  #resizing the window
     categories = []
     count_categories = {}
 
@@ -85,31 +85,20 @@ def RankingOfCategories(number_of_members) : #Ranking of books categories mostly
             
     count_categories_sorted = dict(sorted(count_categories.items(), key= lambda x:x[1],reverse= True)) #here we sorted the dict using "dict(sorted())" built in function and gave it "count_categories" to cycle through
 
-    """
-    counter = 0 # and using "key=count_categories.get" we get the values of each category and then sort by the values of the keys
-    count_categories_sorted_len = len(count_categories_sorted)                                                                                
-    print('Ranking of books categories mostly read by the group members: ')
-    for c in count_categories_sorted: #printing the dict
-        counter +=1
-        if counter == count_categories_sorted_len:
-            print(c + ":", count_categories[c], end=".\n")
-        else:
-            print(c + ":", count_categories[c], end=", ")
-    """
     plt.bar(count_categories_sorted.keys(),count_categories_sorted.values(),label="Books")  #to implement a bar chart
     plt.title("Ranking of categories.")
     plt.legend()    
     plt.xlabel('Categories')
     plt.ylabel('Number of books')
-    plt.gcf().canvas.set_window_title("Task Three")
-    plt.show()
+    plt.gcf().canvas.set_window_title("Task Three") #to change the window title
+    plt.show()  #to show the chart
 
 #RankingOfCategories(number_of_members)#func call
 
 #----
 
 def RankingBasedOnBooksRead(number_of_members): #Ranking of group members based on number of books read
-    plt.figure(figsize=(15,5))
+    plt.figure(figsize=(15,5))  #resizing the window
     count_books = {} #dict to store the total number books read by members
     m = 1
     while m <= number_of_members: #to cycle between members
@@ -118,31 +107,20 @@ def RankingBasedOnBooksRead(number_of_members): #Ranking of group members based 
 
     countbooks_sorted = dict(sorted(count_books.items(), key= lambda x:x[1],reverse= True)) #sort the dict count_books using "dict(sorted())" built in function
 
-    """
-    print('Ranking of group members based on number of books read: ')
-    countbooks_sorted_len = len(countbooks_sorted)
-    counter =0
-    for b in countbooks_sorted: #printing the dict
-        counter += 1
-        if counter == countbooks_sorted_len:
-            print(b + ":", str(count_books[b]) + " Books",end=".\n")
-        else:
-            print(b + ":", str(count_books[b]) + " Books", end=", ")
-    """
     plt.bar(countbooks_sorted.keys(),countbooks_sorted.values(),color='#444444' ,label="Books")   #here we used the built-in func called Matplotlib to make the charts
     plt.title("Ranking based on books read.")
     plt.legend()
     plt.xlabel("Members")
     plt.ylabel("Number of books read")
-    plt.gcf().canvas.set_window_title("Task four")
-    plt.show()     
+    plt.gcf().canvas.set_window_title("Task four")  #to change the window title
+    plt.show()  #to show the chart     
 
 #RankingBasedOnBooksRead(number_of_members)#fun call
 
 #----
 
 def RankingBasedOnPagesRead(number_of_members): #Ranking of group members based on number of pages read
-    plt.figure(figsize=(15,5))
+    plt.figure(figsize=(15,5))  #resizing the window
     number_of_pages = 0
     countpages = {} #dict to store the total number of pages read by a member
    
@@ -156,24 +134,13 @@ def RankingBasedOnPagesRead(number_of_members): #Ranking of group members based 
     
     countpages_sorted = dict(sorted(countpages.items(), key= lambda x:x[1],reverse= True)) #sort the dict countpages
 
-    """
-    countpages_sorted_len = len(countpages_sorted)
-    print('Ranking of group members based on number of pages read: ')
-    counter = 0
-    for b in countpages_sorted: #printing the dict
-        counter += 1
-        if counter == countpages_sorted_len:
-            print(b + ":", str(countpages[b]) + "p",end=".\n")
-        else:
-            print(b + ":", str(countpages[b]) + "p", end=", ")
-    """
     plt.bar(countpages_sorted.keys(),countpages_sorted.values(),color="g" ,label="Pages")   #here we used the built-in func called Matplotlib to make the charts
     plt.title("Ranking based on Pages read.")
     plt.legend()
     plt.xlabel("Members")
     plt.ylabel("Number of Pages read")
-    plt.gcf().canvas.set_window_title("Task five")
-    plt.show()    
+    plt.gcf().canvas.set_window_title("Task five")  #to change the window title
+    plt.show()  #to show the chart 
 
 #RankingBasedOnPagesRead(number_of_members)#func call
 
@@ -183,20 +150,19 @@ Tobj = Tk() #object for the tkinter
 Tobj.title("CS213 Project") 
 def TaskOne():
     NumberOfBooks(number_of_members)
-    return
+    
 def TaskTwo():
     number_of_pages(number_of_members)
-    return
+
 def TaskThree():
     RankingOfCategories(number_of_members)
-    return
+
 def TaskFour():
     RankingBasedOnBooksRead(number_of_members)
-    return
+    
 def TaskFive():
     RankingBasedOnPagesRead(number_of_members)    #functions for the buttons in the gui
-    return
-
+    
 ButtonOne = Button(Tobj, text= "Task One",padx= 10,pady=10, command = TaskOne)
 ButtonOne.grid(row=0, column=0)
 ButtonTwo = Button(Tobj, text= "Task Two",padx= 10,pady=10,command = TaskTwo)
